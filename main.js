@@ -146,6 +146,7 @@ $(window).on('load', () => {
 	// The data is requested with the Fetch API function
 	// Here we pass in the latitude and longitude values from either the geoFindMe or the checkLocation function
 	function checkCurrentWeather(latitude, longitude) {
+		$('#forecast').fadeIn();
 		let pWeather = $('#weatherData'); // Place for storing the weather info from loading to ready state
 		fetch(
 			`${weatherApiUrl}lat=${latitude}&lon=${longitude}&units=${units}&appid=${API_KEY}&units=${units}`
