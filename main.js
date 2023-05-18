@@ -359,7 +359,7 @@ $(window).on('load', () => {
 	}
 	// Function to hide the Forecast, done with removing the classlists that show the forecast
 	function hideForecast() {
-		$('#right').hide();
+		$('#right').fadeOut(250);
 		let container = $('#container');
 		container.removeClass('forecastWidth');
 		container.removeClass('forecastMinWidth');
