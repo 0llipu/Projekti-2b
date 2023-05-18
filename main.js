@@ -228,6 +228,7 @@ $(window).on('load', () => {
 		$('#forecastList').fadeToggle(100);
 		$('#forecastList').hide(100);
 		$('#forecastList').fadeToggle(200);
+		$('#forecastList').slideDown(300);
 		fetch(
 			`${forecastApiUrl}lat=${latitude}&lon=${longitude}&units=${units}&appid=${API_KEY}&units=${units}`
 		)
@@ -353,6 +354,7 @@ $(window).on('load', () => {
 	// Function to show the Forecast, done with adding classlists that will show the div with the forecast
 	function showForecast() {
 		$('#right').fadeIn(250);
+		$('#forecastList').slideUp(300);
 		let container = $('#container');
 		container.addClass('forecastWidth');
 		container.addClass('forecastMinWidth');
