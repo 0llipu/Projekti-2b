@@ -20,7 +20,6 @@ $(window).on('load', () => {
 	let check72 = $('#check72');
 	let forecast24 = false;
 	let forecast72 = false;
-	$('#forecast').hide(); // forecast div hided with jQuery library
 
 	// Event listener for the current location finder
 	weatherForCurrentLocation.on('click', geoFindMe);
@@ -43,12 +42,13 @@ $(window).on('load', () => {
 	// Event listeners for the forecast buttons
 	// Animation done with jQuery library
 	check24.on('click', (e) => {
+		showForecast(); // Call the function to show the forecast
 		checkForecast(latitude, longitude);
 		forecast24 = true;
 		forecast72 = false;
 		$(check24).animate(
 			{
-				fontSize: '0.95rem',
+				fontSize: '0.9rem',
 			},
 			'slow'
 		);
@@ -61,12 +61,13 @@ $(window).on('load', () => {
 	});
 
 	check72.on('click', (e) => {
+		showForecast(); // Call the function to show the forecast
 		checkForecast(latitude, longitude);
 		forecast72 = true;
 		forecast24 = false;
 		$(check72).animate(
 			{
-				fontSize: '0.95rem',
+				fontSize: '0.9rem',
 			},
 			'slow'
 		);
@@ -81,6 +82,8 @@ $(window).on('load', () => {
 	// Function geoFindme for looking up the location of the browser and storing the latitude and longitude values for later use.
 	// Some animation done with jQuery library
 	function geoFindMe() {
+		$('#weather').fadeToggle(250);
+		$('#forecast').fadeToggle(250);
 		function success(position) {
 			latitude = position.coords.latitude;
 			longitude = position.coords.longitude;
@@ -88,8 +91,8 @@ $(window).on('load', () => {
 				`Latitude: ${latitude}° <br> Longitude: ${longitude} °`
 			);
 			checkCurrentWeather(latitude, longitude); // As a default checking the current weather with the coordinates from current location right away
-			clearForecast(); // Clearing forecast of any old locations
 			hideForecast(); // Hiding forecast, as a default showing only current weather
+			clearForecast(); // Clearing forecast of any old locations
 		}
 		// Default error message, if-else conditional with a timeout for the position lookup
 		function error() {
@@ -110,6 +113,8 @@ $(window).on('load', () => {
 	// The data is requested with the Fetch API function
 	// Some animation done with jQuery library
 	function checkLocation(city) {
+		$('#weather').fadeToggle(250);
+		$('#forecast').fadeToggle(250);
 		fetch(`${locationApiUrl}${city}&limit=1&appid=${API_KEY}`)
 			.then((locationResponse) => locationResponse.json())
 			.then((locationData) => {
@@ -117,9 +122,9 @@ $(window).on('load', () => {
 					// Checking if the response was empty, this means that the response did not find coordinates for the user input
 					alert('Did not find that city. Please try again!'); // Pop up an alert
 					pLocation.html('No Coordinates'); // Reset location coordinates
-					cityInput.value = ''; // Reset user input field
-					clearForecast(); // Clear forecast section
+					cityInput.value = ''; // Reset user input field'
 					hideForecast(); // Hide forecast section
+					clearForecast(); // Clear forecast section
 					clearCurrent(); // Clear current weather section
 				} else {
 					getLocationInfo(locationData); // If the city was found then we will store the response and run this function
@@ -138,15 +143,16 @@ $(window).on('load', () => {
 
 		pLocation.html(str);
 		checkCurrentWeather(latitude, longitude); // Search for current location's current weather
-		clearForecast(); // Clear forecast from any old info
 		hideForecast(); // Hide forecast as a default
+		clearForecast(); // Clear forecast from any old info
 	}
 
 	// Function checkCurrentWeather to search for the current weather
 	// The data is requested with the Fetch API function
 	// Here we pass in the latitude and longitude values from either the geoFindMe or the checkLocation function
 	function checkCurrentWeather(latitude, longitude) {
-		$('#forecast').fadeIn();
+		$('#weather').fadeToggle(350);
+		$('#forecast').fadeToggle(350);
 		let pWeather = $('#weatherData'); // Place for storing the weather info from loading to ready state
 		fetch(
 			`${weatherApiUrl}lat=${latitude}&lon=${longitude}&units=${units}&appid=${API_KEY}&units=${units}`
@@ -216,6 +222,7 @@ $(window).on('load', () => {
 	// The data is requested with the Fetch API function
 	// Inside this function we check if user pressed 24h or 24-72h option for the forecast
 	function checkForecast(latitude, longitude) {
+		$('#forecastList').fadeToggle(500);
 		fetch(
 			`${forecastApiUrl}lat=${latitude}&lon=${longitude}&units=${units}&appid=${API_KEY}&units=${units}`
 		)
@@ -260,8 +267,6 @@ $(window).on('load', () => {
 		forecastFor24 += '</ul>';
 
 		forecastList.html(forecastFor24); // Command to insert the created object into the html
-
-		showForecast(); // Call the function to show the forecast
 	}
 
 	// This function constructs the weather forecast for the hours between the hour from 24 to 72 hour
@@ -294,8 +299,6 @@ $(window).on('load', () => {
 		forecastFor72 += '</ul>';
 
 		forecastList.html(forecastFor72); // Command to insert the created object into the html
-
-		showForecast(); // Call the function to show the forecast
 	}
 
 	// Function for converting degree values to compass directions
@@ -344,14 +347,15 @@ $(window).on('load', () => {
 	}
 	// Function to show the Forecast, done with adding classlists that will show the div with the forecast
 	function showForecast() {
-		$('#right').fadeIn();
+		$('#right').fadeIn(500);
+		$('#forecastList').fadeToggle(500);
 		let container = $('#container');
 		container.addClass('forecastWidth');
 		container.addClass('forecastMinWidth');
 	}
 	// Function to hide the Forecast, done with removing the classlists that show the forecast
 	function hideForecast() {
-		$('#right').fadeOut();
+		$('#right').hide();
 		let container = $('#container');
 		container.removeClass('forecastWidth');
 		container.removeClass('forecastMinWidth');
