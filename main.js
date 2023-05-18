@@ -121,15 +121,13 @@ $(window).on('load', () => {
 					alert('Did not find that city. Please try again!'); // Pop up an alert
 					pLocation.html('No Coordinates'); // Reset location coordinates
 					cityInput.value = ''; // Reset user input field'
-					hideForecast(); // Hide forecast section
 					clearForecast(); // Clear forecast section
+					hideForecast(); // Hide forecast section
 					clearCurrent(); // Clear current weather section
 				} else {
 					getLocationInfo(locationData); // If the city was found then we will store the response and run this function
 				}
 			});
-		$('#weather').hide();
-		$('#forecast').hide();
 	}
 
 	// Function getLocationInfo to get the coordinates for the user input city
@@ -143,8 +141,8 @@ $(window).on('load', () => {
 
 		pLocation.html(str);
 		checkCurrentWeather(latitude, longitude); // Search for current location's current weather
-		hideForecast(); // Hide forecast as a default
-		clearForecast(); // Clear forecast from any old info
+		clearForecast(); // Clear forecast section
+		hideForecast(); // Hide forecast section
 	}
 
 	// Function checkCurrentWeather to search for the current weather
@@ -228,7 +226,6 @@ $(window).on('load', () => {
 		$('#forecastList').fadeToggle(100);
 		$('#forecastList').hide(100);
 		$('#forecastList').fadeToggle(200);
-		$('#forecastList').slideDown(300);
 		fetch(
 			`${forecastApiUrl}lat=${latitude}&lon=${longitude}&units=${units}&appid=${API_KEY}&units=${units}`
 		)
@@ -354,14 +351,13 @@ $(window).on('load', () => {
 	// Function to show the Forecast, done with adding classlists that will show the div with the forecast
 	function showForecast() {
 		$('#right').fadeIn(250);
-		$('#forecastList').slideUp(300);
 		let container = $('#container');
 		container.addClass('forecastWidth');
 		container.addClass('forecastMinWidth');
 	}
 	// Function to hide the Forecast, done with removing the classlists that show the forecast
 	function hideForecast() {
-		$('#right').fadeOut(250);
+		$('#right').fadeOut(175);
 		let container = $('#container');
 		container.removeClass('forecastWidth');
 		container.removeClass('forecastMinWidth');
