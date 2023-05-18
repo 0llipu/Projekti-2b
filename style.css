@@ -1,0 +1,210 @@
+/* Resets for universal default styling, makes it easier to do own styling*/
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
+}
+
+input,
+button,
+form {
+	appearance: none;
+	border: none;
+	outline: none;
+	background: none;
+	cursor: initial;
+	text-decoration: none;
+}
+/* Resets end */
+
+/* Variables for colors */
+
+:root {
+	--primary: linear-gradient(to top left, #030333 0%, #3b6b9b 100%);
+	--text-color: rgb(255, 255, 255);
+	--app: linear-gradient(to bottom right, #030333 0%, #3b6b9b 100%);
+}
+
+/* Universal styling for body */
+
+body {
+	background: var(--primary);
+	background-attachment: fixed;
+}
+
+body h,
+p {
+	margin-left: 0.3rem;
+}
+
+body h1 {
+	font-size: 1rem;
+	margin-top: 0.3rem;
+	margin-bottom: 0.3rem;
+	font-weight: 100;
+}
+
+body h3 {
+	font-size: 0.8rem;
+	font-weight: 100;
+}
+
+body p {
+	font-size: 0.65rem;
+}
+
+/* Container styling */
+
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 3rem;
+	width: 30%;
+	padding: 1rem;
+	min-width: 300px;
+	max-width: 620px;
+	background: var(--app);
+	border-radius: 25px;
+	color: var(--text-color);
+	margin-bottom: 3rem;
+	box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Button & Input field styling */
+
+form {
+	display: flex;
+}
+
+input,
+button {
+	padding: 0.2rem;
+	color: var(--text-color);
+	display: flex;
+	margin: auto;
+}
+
+input {
+	background-color: transparent !important;
+}
+
+::placeholder {
+	color: var(--text-color);
+	opacity: 0.25;
+}
+
+#city {
+	font-size: 0.9rem;
+	margin-left: 1.35rem;
+}
+button {
+	cursor: pointer;
+}
+
+button #submit {
+	margin-right: 0.4rem;
+}
+
+input:hover,
+button:hover {
+	opacity: 0.5;
+}
+
+button:active {
+	opacity: 0.3;
+}
+
+.search {
+	display: flex;
+}
+
+/* Current weather styling */
+
+.current {
+	display: flex;
+	text-align: left;
+	justify-content: center;
+	align-items: center;
+}
+
+.temp,
+#temp p {
+	font-size: 3rem;
+	margin-left: 2rem;
+}
+
+#check24,
+#check72 {
+	display: inline !important;
+}
+
+/* Adding margin between sections */
+
+#location,
+#forecast {
+	margin-top: 1rem;
+}
+
+/* Styling the right div & forecast section */
+
+.forecastWidth {
+	width: 60%;
+}
+
+.forecastMinWidth {
+	min-width: 600px;
+}
+
+.forecastDisplay {
+	display: flex !important;
+}
+
+.right {
+	display: none;
+	font-size: 0.7rem;
+}
+
+.right h3 {
+	text-align: center;
+	margin-bottom: 1rem;
+}
+
+.right ul li {
+	list-style: none;
+	text-align: justify;
+}
+
+.right div {
+	display: flex;
+	align-items: center;
+}
+
+.forecastImg {
+	margin-left: 0.25rem;
+}
+
+/* Responsiveness */
+
+@media only screen and (max-width: 620px) {
+	.container {
+		flex-direction: column;
+		align-items: center;
+		width: 90%;
+		min-width: 300px;
+	}
+
+	.right div {
+		justify-content: center;
+	}
+	.right {
+		margin-top: 1rem;
+		font-size: 0.7rem;
+	}
+	.search {
+		justify-content: center;
+	}
+}
