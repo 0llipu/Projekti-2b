@@ -153,8 +153,8 @@ $(window).on('load', () => {
 	function checkCurrentWeather(latitude, longitude) {
 		$('#weather').hide(100);
 		$('#forecast').hide(100);
-		$('#weather').fadeToggle(150);
-		$('#forecast').fadeToggle(150);
+		$('#weather').fadeToggle(330);
+		$('#forecast').fadeToggle(330);
 		let pWeather = $('#weatherData'); // Place for storing the weather info from loading to ready state
 		fetch(
 			`${weatherApiUrl}lat=${latitude}&lon=${longitude}&units=${units}&appid=${API_KEY}&units=${units}`
