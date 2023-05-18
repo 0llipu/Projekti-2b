@@ -82,8 +82,8 @@ $(window).on('load', () => {
 	// Function geoFindme for looking up the location of the browser and storing the latitude and longitude values for later use.
 	// Some animation done with jQuery library
 	function geoFindMe() {
-		$('#weather').fadeToggle(250);
-		$('#forecast').fadeToggle(250);
+		$('#weather').fadeToggle(330);
+		$('#forecast').fadeToggle(330);
 		function success(position) {
 			latitude = position.coords.latitude;
 			longitude = position.coords.longitude;
@@ -113,8 +113,8 @@ $(window).on('load', () => {
 	// The data is requested with the Fetch API function
 	// Some animation done with jQuery library
 	function checkLocation(city) {
-		$('#weather').fadeToggle(250);
-		$('#forecast').fadeToggle(250);
+		$('#weather').fadeToggle(330);
+		$('#forecast').fadeToggle(330);
 		fetch(`${locationApiUrl}${city}&limit=1&appid=${API_KEY}`)
 			.then((locationResponse) => locationResponse.json())
 			.then((locationData) => {
@@ -151,8 +151,8 @@ $(window).on('load', () => {
 	// The data is requested with the Fetch API function
 	// Here we pass in the latitude and longitude values from either the geoFindMe or the checkLocation function
 	function checkCurrentWeather(latitude, longitude) {
-		$('#weather').fadeToggle(350);
-		$('#forecast').fadeToggle(350);
+		$('#weather').fadeToggle(330);
+		$('#forecast').fadeToggle(330);
 		let pWeather = $('#weatherData'); // Place for storing the weather info from loading to ready state
 		fetch(
 			`${weatherApiUrl}lat=${latitude}&lon=${longitude}&units=${units}&appid=${API_KEY}&units=${units}`
@@ -222,7 +222,6 @@ $(window).on('load', () => {
 	// The data is requested with the Fetch API function
 	// Inside this function we check if user pressed 24h or 24-72h option for the forecast
 	function checkForecast(latitude, longitude) {
-		$('#forecastList').fadeToggle(500);
 		fetch(
 			`${forecastApiUrl}lat=${latitude}&lon=${longitude}&units=${units}&appid=${API_KEY}&units=${units}`
 		)
@@ -267,6 +266,7 @@ $(window).on('load', () => {
 		forecastFor24 += '</ul>';
 
 		forecastList.html(forecastFor24); // Command to insert the created object into the html
+		$('#forecastList').fadeToggle(440);
 	}
 
 	// This function constructs the weather forecast for the hours between the hour from 24 to 72 hour
@@ -299,6 +299,7 @@ $(window).on('load', () => {
 		forecastFor72 += '</ul>';
 
 		forecastList.html(forecastFor72); // Command to insert the created object into the html
+		$('#forecastList').fadeToggle(440);
 	}
 
 	// Function for converting degree values to compass directions
@@ -347,8 +348,8 @@ $(window).on('load', () => {
 	}
 	// Function to show the Forecast, done with adding classlists that will show the div with the forecast
 	function showForecast() {
-		$('#right').fadeIn(500);
-		$('#forecastList').fadeToggle(500);
+		$('#right').fadeIn(330);
+		$('#forecastList').fadeToggle(440);
 		let container = $('#container');
 		container.addClass('forecastWidth');
 		container.addClass('forecastMinWidth');
