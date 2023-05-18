@@ -364,5 +364,17 @@ $(window).on('load', () => {
 		let container = $('#container');
 		container.removeClass('forecastWidth');
 		container.removeClass('forecastMinWidth');
+		$(check24).animate(
+			{
+				fontSize: '0.8rem',
+			},
+			'slow'
+		);
+		$(check72).animate(
+			{
+				fontSize: '0.8rem',
+			},
+			'slow'
+		);
 	}
 });
