@@ -35,7 +35,7 @@ $(window).on('load', () => {
 			checkLocation(city);
 		} else {
 			alert("City input can't be empty!");
-			console.log('error');
+			console.log("Error! City input can't be empty!");
 			return;
 		}
 	});
@@ -46,7 +46,6 @@ $(window).on('load', () => {
 		checkForecast(latitude, longitude);
 		forecast24 = true;
 		forecast72 = false;
-		$('#right').fadeOut().fadeIn(); // Animation starts
 		$(check24).animate(
 			{
 				fontSize: '0.95rem',
@@ -58,14 +57,13 @@ $(window).on('load', () => {
 				fontSize: '0.8rem',
 			},
 			'slow'
-		); // Animation ends
+		);
 	});
 
 	check72.on('click', (e) => {
 		checkForecast(latitude, longitude);
 		forecast72 = true;
 		forecast24 = false;
-		$('#right').fadeOut().fadeIn(); // Animation starts
 		$(check72).animate(
 			{
 				fontSize: '0.95rem',
@@ -77,13 +75,12 @@ $(window).on('load', () => {
 				fontSize: '0.8rem',
 			},
 			'slow'
-		); // Animation ends
+		);
 	});
 
 	// Function geoFindme for looking up the location of the browser and storing the latitude and longitude values for later use.
 	// Some animation done with jQuery library
 	function geoFindMe() {
-		$('#weather').animate({ opacity: 0.1 }); // Animation starts
 		function success(position) {
 			latitude = position.coords.latitude;
 			longitude = position.coords.longitude;
@@ -93,12 +90,10 @@ $(window).on('load', () => {
 			checkCurrentWeather(latitude, longitude); // As a default checking the current weather with the coordinates from current location right away
 			clearForecast(); // Clearing forecast of any old locations
 			hideForecast(); // Hiding forecast, as a default showing only current weather
-			$('#forecast').fadeIn();
 		}
 		// Default error message, if-else conditional with a timeout for the position lookup
 		function error() {
 			pLocation.text('Unable to retrieve your location');
-			$('#weather').animate({ opacity: 1 }); // Animation ends
 		}
 
 		if (!navigator.geolocation) {
@@ -115,7 +110,6 @@ $(window).on('load', () => {
 	// The data is requested with the Fetch API function
 	// Some animation done with jQuery library
 	function checkLocation(city) {
-		$('#weather').animate({ opacity: 0.1 }); // Animation starts
 		fetch(`${locationApiUrl}${city}&limit=1&appid=${API_KEY}`)
 			.then((locationResponse) => locationResponse.json())
 			.then((locationData) => {
@@ -127,10 +121,8 @@ $(window).on('load', () => {
 					clearForecast(); // Clear forecast section
 					hideForecast(); // Hide forecast section
 					clearCurrent(); // Clear current weather section
-					$('#weather').animate({ opacity: 1 }); // Animation ends
 				} else {
 					getLocationInfo(locationData); // If the city was found then we will store the response and run this function
-					$('#forecast').fadeIn(); // Animation done with jQuery, fade in the element if a city is found via fetch API
 				}
 			});
 	}
@@ -217,8 +209,6 @@ $(window).on('load', () => {
 		nWeather.html(name);
 
 		pWeather.html(str);
-
-		$('#weather').animate({ opacity: 1 });
 	}
 
 	// Function checkForecast requests data from API about the forecast information
