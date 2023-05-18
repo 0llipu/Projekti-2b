@@ -6,7 +6,7 @@ Projekti 2a pohja löytyy täältä: https://github.com/0llipu/Projekti-2a
 
 Linkki Projekti 2b videoon on tehtäväpalautuksessa.
 
-Tässä linkki verkkosivustolle: https://op-weatherapp2.0.netlify.app/
+Tässä linkki verkkosivustolle: https://op-weatherapp2b.netlify.app/
 
 Tässä alla listaus lähteistä joita käytin tähän jQuery projektiin.
 
